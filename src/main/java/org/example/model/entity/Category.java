@@ -6,19 +6,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
-
 @Entity
-@Table(name = "beverages")
-public class Beverages {
+@Table(name = "category")
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    private String code;
-    private String title;
-    private String image;
-    private double price;
-    private String category;
+    private String name;
 
 }
