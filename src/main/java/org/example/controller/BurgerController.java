@@ -4,10 +4,7 @@ import org.example.model.entity.Beverages;
 import org.example.model.entity.Burger;
 import org.example.service.BurgerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +19,15 @@ public class BurgerController {
     @GetMapping("/all")
     public List<Burger> getBurgers(){
         return burgerService.getAllBurgers();
+    }
+
+    @GetMapping("/all/{categories}")
+    public List<Burger> categorizedItems(@PathVariable String categories){
+        return burgerService.getCategories(categories);
+    }
+
+    @GetMapping("/categories")
+    public List<String> getCategories(){
+        return burgerService.getAllCategories();
     }
 }

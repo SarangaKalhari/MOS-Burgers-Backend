@@ -16,4 +16,12 @@ public class BurgerService {
     public List<Burger> getAllBurgers() {
         return burgerRepository.findAll();
     }
+
+    public List<Burger> getCategories(String categories) {
+        return burgerRepository.findByCategory(categories);
+    }
+
+    public List<String> getAllCategories() {
+        return burgerRepository.getAllCategories();
+    }
 }
