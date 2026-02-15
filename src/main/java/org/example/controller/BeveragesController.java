@@ -22,4 +22,9 @@ public class BeveragesController {
     public List<Beverages> getBurgers(){
         return beveragesService.getAllBeverages();
     }
+
+    @GetMapping("/categories")
+    public List<String> getCategories(){
+        return beveragesService.getAllCategories();
+    }
 }

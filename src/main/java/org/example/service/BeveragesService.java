@@ -16,4 +16,8 @@ public class BeveragesService {
     public List<Beverages> getAllBeverages() {
         return beveragesRepository.findAll();
     }
+
+    public List<String> getAllCategories() {
+        return beveragesRepository.getAllCategories();
+    }
 }
