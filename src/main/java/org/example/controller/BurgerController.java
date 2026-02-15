@@ -1,9 +1,10 @@
 package org.example.controller;
 
-import org.example.model.entity.Beverages;
+import org.example.model.dto.BurgerDTO;
 import org.example.model.entity.Burger;
 import org.example.service.BurgerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class BurgerController {
     @Autowired
     BurgerService burgerService;
 
-    @GetMapping("/all")
+    @GetMapping
     public List<Burger> getBurgers(){
         return burgerService.getAllBurgers();
     }
@@ -29,5 +30,17 @@ public class BurgerController {
     @GetMapping("/categories")
     public List<String> getCategories(){
         return burgerService.getAllCategories();
+    }
+
+    @PutMapping("/add")
+    public void addBurger(@RequestBody BurgerDTO burgerDTO ){
+        burgerService.addBurger(burgerDTO);
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteBurger(@RequestBody String code){
+        burgerService.deleteBurger(code);
+        return ResponseEntity.ok("Burger deleted successfully");
+
     }
 }

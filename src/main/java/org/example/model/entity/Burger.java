@@ -15,6 +15,7 @@ public class Burger {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(unique = true)
     private String code;
     private String title;
     private String image;
