@@ -22,7 +22,7 @@ public class BurgerController {
         return burgerService.getAllBurgers();
     }
 
-    @GetMapping("/all/{categories}")
+    @GetMapping("/{categories}")
     public List<Burger> categorizedItems(@PathVariable String categories){
         return burgerService.getCategories(categories);
     }

@@ -1,12 +1,11 @@
 package org.example.controller;
 
+import org.example.model.dto.BeveragesDTO;
 import org.example.model.entity.Beverages;
+import org.example.model.entity.Burger;
 import org.example.service.BeveragesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class BeveragesController {
     @Autowired
     BeveragesService beveragesService;
 
-    @GetMapping("/all")
+    @GetMapping
     public List<Beverages> getBurgers(){
         return beveragesService.getAllBeverages();
     }
@@ -26,5 +25,10 @@ public class BeveragesController {
     @GetMapping("/categories")
     public List<String> getCategories(){
         return beveragesService.getAllCategories();
+    }
+
+    @GetMapping("/all/{categories}")
+    public List<Beverages> categorizedItems(@PathVariable String categories){
+        return beveragesService.getCategories(categories);
     }
 }
