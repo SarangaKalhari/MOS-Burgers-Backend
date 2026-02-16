@@ -23,8 +23,8 @@ public class AppetizersService {
     }
 
 //    get categorized data
-    public List<Appetizers> getCategories(String categories) {
-        return appetizersRepository.findByCategories(categories);
+    public List<Appetizers> getCategories(String category) {
+        return appetizersRepository.findByCategory(category);
     }
 
 //    get all appetizers
@@ -44,7 +44,7 @@ public class AppetizersService {
 
 //    delete item from db
     public void deleteAppetizers(String code){
-        appetizersRepository.deleteByCode();
+        appetizersRepository.deleteByCode(code);
     }
 
 }

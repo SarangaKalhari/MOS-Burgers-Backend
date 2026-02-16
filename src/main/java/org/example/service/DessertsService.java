@@ -1,9 +1,8 @@
 package org.example.service;
 
-import org.example.model.dto.CategoryDTO;
 import org.example.model.dto.DessertDTO;
 import org.example.model.entity.Appetizers;
-import org.example.model.entity.Dessert;
+import org.example.model.entity.Desserts;
 import org.example.repository.DessertsRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ public class DessertsService {
     DessertsRepository dessertsRepository;
 
     public List<DessertDTO> getDesserts(){
-        List<Dessert> desserts = dessertsRepository.findAll();
+        List<Desserts> desserts = dessertsRepository.findAll();
 
         return desserts.stream()
                 .map(category -> modelMapper.map(desserts, DessertDTO.class))
@@ -28,7 +27,7 @@ public class DessertsService {
     }
 
     public void addDessert(DessertDTO dessertDTO) {
-        Dessert dessert = modelMapper.map(dessertDTO, Dessert.class);
+        Desserts dessert = modelMapper.map(dessertDTO, Desserts.class);
         dessertsRepository.save(dessert);
     }
 

@@ -1,7 +1,7 @@
 package org.example.repository;
 
 import org.example.model.entity.Appetizers;
-import org.example.model.entity.Dessert;
+import org.example.model.entity.Desserts;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -9,12 +9,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface DessertsRepository extends JpaRepository<Dessert, Long> {
+public interface DessertsRepository extends JpaRepository<Desserts, Long> {
 
     void deleteByCode(String code);
 
     List<Appetizers> findByCategory(String categories);
 
-    @Query("SELECT DISTINCT d.category FROM desserts d")
+    @Query("SELECT DISTINCT d.category FROM Desserts d")
     List<String> getCategories();
 }

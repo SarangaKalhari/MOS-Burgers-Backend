@@ -3,8 +3,8 @@ package org.example.model.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "desserts")
-public class Dessert {
+@Table(name = "dessert")
+public class Desserts {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,5 +15,6 @@ public class Dessert {
     private String image;
     private double price;
     private String category;
+    private int stock;
 
 }

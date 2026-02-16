@@ -14,5 +14,6 @@ public class BeveragesDTO {
     private String image;
     private double price;
     private String category;
+    private int stock;
 
 }
