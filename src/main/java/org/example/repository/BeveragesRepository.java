@@ -15,4 +15,6 @@ public interface BeveragesRepository extends JpaRepository<Beverages, Long> {
     List<String> getAllCategories();
 
     List<Beverages> findByCategory(String categories);
+
+    void deleteByCode(String code);
 }
