@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface BurgerRepository extends JpaRepository<Burger, Long> {
@@ -16,4 +17,6 @@ public interface BurgerRepository extends JpaRepository<Burger, Long> {
     List<String> getAllCategories();
 
     void deleteByCode(String code);
+
+    Optional<Burger> findByCode(String code);
 }

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface BeveragesRepository extends JpaRepository<Beverages, Long> {
@@ -17,4 +18,6 @@ public interface BeveragesRepository extends JpaRepository<Beverages, Long> {
     List<Beverages> findByCategory(String categories);
 
     void deleteByCode(String code);
+
+    Optional<Beverages> findByCode(String code);
 }
