@@ -1,16 +1,23 @@
 package org.example.model.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
+
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 
 @Entity
 @Table(name = "order_items")
-public class OrderItems {
+public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String productName;
+    private String itemCode;
 
     private String category; // BURGER, BEVERAGE, DESSERT
 

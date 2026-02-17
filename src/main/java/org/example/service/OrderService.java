@@ -37,20 +37,22 @@ public class OrderService {
     @Transactional
     public String placeOrder(OrderRequest request) {
 
-        // 1. Save Order
         Order order = new Order();
         order.setInvoiceId(UUID.randomUUID().toString());
         order.setOrderDate(LocalDateTime.now());
         order.setStatus(OrderStatus.PAID);
         order.setPaymentMethod(PaymentMethod.valueOf(request.getPaymentMethod()));
 
-        orderRepository.save(order);
+        order = orderRepository.save(order); // save first
 
-        // 2. Loop items
+        double subTotal = 0;
+
         for (OrderItemRequest item : request.getItems()) {
 
-            // 3. Check category
-            switch (item.getCategory()) {
+            double itemTotal = item.getUnitPrice() * item.getQuantity();
+            subTotal += itemTotal;
+
+            switch (item.getCategory().toLowerCase()) {
 
                 case "burger":
                     Burger burger = burgerRepository.findByCode(item.getItemCode())
@@ -75,21 +77,30 @@ public class OrderService {
                     beverage.setStock(beverage.getStock() - item.getQuantity());
                     beveragesRepository.save(beverage);
                     break;
-
-                // appetizers & dessert same widiyata
             }
 
-            // 4. Save order item
             OrderItem orderItem = new OrderItem();
             orderItem.setOrder(order);
             orderItem.setItemCode(item.getItemCode());
             orderItem.setQuantity(item.getQuantity());
             orderItem.setUnitPrice(item.getUnitPrice());
-            orderItem.setTotalPrice(item.getTotalPrice());
+            orderItem.setTotalPrice(itemTotal);
 
             orderItemRepository.save(orderItem);
         }
-        return null;
+
+        double tax = subTotal * 0.1;
+        double discount = 0;
+        double total = subTotal + tax - discount;
+
+        order.setSubTotal(subTotal);
+        order.setTaxAmount(tax);
+        order.setDiscountAmount(discount);
+        order.setTotalAmount(total);
+
+        orderRepository.save(order);
+
+        return order.getInvoiceId();
     }
 
     private String generateInvoiceId() {

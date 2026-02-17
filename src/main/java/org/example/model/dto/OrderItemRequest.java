@@ -11,7 +11,8 @@ public class OrderItemRequest {
 
     private String itemCode;
     private String category;
-    private Double unitPrice;
+    private double unitPrice;
     private Integer quantity;
+    private double totalPrice;
 
 }

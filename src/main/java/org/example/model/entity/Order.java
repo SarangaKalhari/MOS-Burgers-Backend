@@ -1,10 +1,7 @@
 package org.example.model.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.example.enums.OrderStatus;
 import org.example.enums.PaymentMethod;
 
@@ -15,6 +12,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 
 @Entity
 @Table(name = "orders ")
