@@ -1,15 +1,23 @@
 package org.example.model.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.example.enums.OrderStatus;
 import org.example.enums.PaymentMethod;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+
 @Entity
-@Table(name = "order")
+@Table(name = "orders ")
 public class Order {
 
         @Id
@@ -36,8 +44,7 @@ public class Order {
         private PaymentMethod paymentMethod;  // CASH, CARD, QR
 
         @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-        private List<OrderItems> orderItems;
-
+        private List<OrderItem> orderItems;
 
 
 }
