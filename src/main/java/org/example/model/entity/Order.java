@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.example.enums.OrderStatus;
 import org.example.enums.PaymentMethod;
+import org.example.model.dto.OrderItemRequest;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Setter
@@ -41,8 +43,13 @@ public class Order {
         @Enumerated(EnumType.STRING)
         private PaymentMethod paymentMethod;  // CASH, CARD, QR
 
-        @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-        private List<OrderItem> orderItems;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderItem> orderItems = new ArrayList<>();
 
+
+    public void addOrderItem(OrderItem item) {
+        orderItems.add(item);
+        item.setOrder(this);
+    }
 
 }

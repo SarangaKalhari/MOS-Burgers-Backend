@@ -1,6 +1,8 @@
 package org.example.model.dto;
 
 import lombok.*;
+import org.antlr.v4.runtime.misc.NotNull;
+import org.example.model.entity.OrderItem;
 
 import java.util.List;
 
@@ -11,7 +13,8 @@ import java.util.List;
 @ToString
 public class OrderRequest {
 
-    private List<OrderItemRequest> items;
-    private Double discount;
     private String paymentMethod;
+    private Double discount;
+    private List<OrderItemRequest> items;
+
 }
