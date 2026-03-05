@@ -9,6 +9,7 @@ import com.lowagie.text.pdf.PdfWriter;
 import jakarta.transaction.Transactional;
 import org.example.enums.OrderStatus;
 import org.example.enums.PaymentMethod;
+import org.example.model.dto.OrderDTO;
 import org.example.model.dto.OrderItemRequest;
 import org.example.model.dto.OrderRequest;
 import org.example.model.entity.Beverages;
@@ -26,7 +27,6 @@ import org.springframework.stereotype.Service;
 import java.awt.*;
 import java.io.ByteArrayOutputStream;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -346,5 +346,9 @@ public class OrderService {
         } catch (Exception e) {
             throw new RuntimeException("Error generating invoice PDF");
         }
+    }
+
+    public List<Order> getOrders() {
+        return orderRepository.findAll();
     }
 }

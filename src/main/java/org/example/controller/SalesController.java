@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.model.entity.Order;
 import org.example.model.entity.OrderItem;
 import org.example.service.Salesservice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,12 @@ public class SalesController {
 
 
     @Autowired
-    public Salesservice getOrders ;
+    public Salesservice salesservice ;
 
-    @GetMapping("/orders")
-    public List<OrderItem> getOrders(){
-        return getOrders.getOrders();
+
+    @GetMapping("/daily")
+    public List<Order> dailyOrders() {
+        return salesservice.getDailyOrders();
     }
+
 }
