@@ -1,8 +1,7 @@
 package org.example.controller;
 
 import org.example.model.entity.Order;
-import org.example.model.entity.OrderItem;
-import org.example.service.Salesservice;
+import org.example.service.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +15,17 @@ public class SalesController {
 
 
     @Autowired
-    public Salesservice salesservice ;
+    public SalesService salesservice ;
 
 
     @GetMapping("/daily")
     public List<Order> dailyOrders() {
         return salesservice.getDailyOrders();
+    }
+
+    @GetMapping("/weekly")
+    public List<Order> weeklyOrders() {
+        return salesservice.getWeeklyOrders();
     }
 
 }
