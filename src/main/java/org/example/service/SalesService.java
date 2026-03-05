@@ -49,4 +49,17 @@ public class SalesService {
                 endOfWeek.atTime(LocalTime.MAX)
         );
     }
+
+    public List<Order> getMonthlyOrders() {
+
+        LocalDate today = LocalDate.now();
+
+        LocalDate startOfMonth = today.withDayOfMonth(1);
+        LocalDate endOfMonth = today.withDayOfMonth(today.lengthOfMonth());
+
+        return salesRepository.findByOrderDateBetween(
+                startOfMonth.atStartOfDay(),
+                endOfMonth.atTime(LocalTime.MAX)
+        );
+    }
 }

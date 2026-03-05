@@ -28,4 +28,9 @@ public class SalesController {
         return salesservice.getWeeklyOrders();
     }
 
+    @GetMapping("/monthly")
+    public List<Order> monthlyOrders() {
+        return salesservice.getMonthlyOrders();
+    }
+
 }
