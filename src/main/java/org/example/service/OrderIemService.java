@@ -1,11 +1,14 @@
 package org.example.service;
 
+import org.example.model.dto.TopSellingItemDTO;
 import org.example.model.entity.OrderItem;
 import org.example.repository.OrderItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import org.springframework.data.domain.Pageable;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -18,14 +21,29 @@ public class OrderIemService {
     private OrderItemRepository orderItemRepository ;
 
 
-    public List<OrderItem> getDailyTopSelling() {
+    public List<TopSellingItemDTO> getDailyTopSelling() {
 
         LocalDate today = LocalDate.now();
 
         LocalDateTime start = today.atStartOfDay();
         LocalDateTime end = today.atTime(LocalTime.MAX);
 
-        return orderItemRepository.findTopSellingItems(start, end, PageRequest.of(0,10));
+        return orderItemRepository.findTopSellingItems(start, end, (Pageable) PageRequest.of(0,10));
 
     }
+
+    public List<TopSellingItemDTO> getWeeklyTop10(){
+
+        LocalDate today = LocalDate.now();
+
+        LocalDate startOfWeek = today.with(DayOfWeek.MONDAY);
+        LocalDate endOfWeek = today.with(DayOfWeek.SUNDAY);
+
+        return orderItemRepository.findTopSellingItems(
+                startOfWeek.atStartOfDay(),
+                endOfWeek.atTime(LocalTime.MAX),
+                (Pageable) PageRequest.of(0,10)
+        );
+    }
+
 }

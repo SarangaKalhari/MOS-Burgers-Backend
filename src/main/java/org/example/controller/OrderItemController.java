@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.model.dto.TopSellingItemDTO;
 import org.example.model.entity.OrderItem;
 import org.example.service.OrderIemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,12 @@ public class OrderItemController {
     public OrderIemService orderIemService ;
 
     @GetMapping("/top/daily")
-    public List<OrderItem> dailyTopSelling(){
+    public List<TopSellingItemDTO> dailyTopSelling(){
         return orderIemService.getDailyTopSelling();
+    }
+
+    @GetMapping("top/weekly")
+    public List<TopSellingItemDTO> weeklyTop10(){
+        return orderIemService.getWeeklyTop10();
     }
 }
