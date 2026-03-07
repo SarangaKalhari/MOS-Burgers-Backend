@@ -43,4 +43,9 @@ public class OrderController {
         return orderService.getWeeklyRevenue();
     }
 
+    @GetMapping("/revenue/monthly")
+    public Double monthlyRevenue(){
+        return orderService.getMonthlyRevenue();
+    }
+
 }

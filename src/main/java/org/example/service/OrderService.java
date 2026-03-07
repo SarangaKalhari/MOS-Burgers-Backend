@@ -377,4 +377,17 @@ public class OrderService {
                 end.atTime(LocalTime.MAX)
         );
     }
+
+    public Double getMonthlyRevenue(){
+
+        LocalDate today = LocalDate.now();
+
+        LocalDate start = today.withDayOfMonth(1);
+        LocalDate end = today.withDayOfMonth(today.lengthOfMonth());
+
+        return orderRepository.getRevenueBetween(
+                start.atStartOfDay(),
+                end.atTime(LocalTime.MAX)
+        );
+    }
 }
