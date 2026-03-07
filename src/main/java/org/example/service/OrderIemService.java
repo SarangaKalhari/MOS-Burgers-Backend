@@ -46,4 +46,18 @@ public class OrderIemService {
         );
     }
 
+    public List<TopSellingItemDTO> getMonthlyTop10() {
+        LocalDate today = LocalDate.now();
+        LocalDate firstDay = today.withDayOfMonth(1);
+        LocalDate lastDay = today.withDayOfMonth(today.lengthOfMonth());
+
+        LocalDateTime start = firstDay.atStartOfDay();
+        LocalDateTime end = lastDay.atTime(LocalTime.MAX);
+
+        return orderItemRepository.findTopSellingItems(
+                start,
+                end,
+                PageRequest.of(0, 10) // Top 10
+        );
+    }
 }

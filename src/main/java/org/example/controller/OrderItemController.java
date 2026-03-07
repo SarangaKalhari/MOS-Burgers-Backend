@@ -26,4 +26,10 @@ public class OrderItemController {
     public List<TopSellingItemDTO> weeklyTop10(){
         return orderIemService.getWeeklyTop10();
     }
+
+    @GetMapping("/top/monthly")
+    public List<TopSellingItemDTO> monthlyTopSelling(){
+        return orderIemService.getMonthlyTop10();
+    }
+
 }
