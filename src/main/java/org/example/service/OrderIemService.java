@@ -60,4 +60,45 @@ public class OrderIemService {
                 PageRequest.of(0, 10) // Top 10
         );
     }
+
+    public List<TopSellingItemDTO> dailyTop() {
+
+        LocalDate today = LocalDate.now();
+
+        LocalDateTime start = today.atStartOfDay();
+        LocalDateTime end = today.atTime(LocalTime.MAX);
+
+        return orderItemRepository.findTopSellingItems(start, end, (Pageable) PageRequest.of(0,1));
+
+    }
+
+    public List<TopSellingItemDTO> weeklyTop(){
+
+        LocalDate today = LocalDate.now();
+
+        LocalDate startOfWeek = today.with(DayOfWeek.MONDAY);
+        LocalDate endOfWeek = today.with(DayOfWeek.SUNDAY);
+
+        return orderItemRepository.findTopSellingItems(
+                startOfWeek.atStartOfDay(),
+                endOfWeek.atTime(LocalTime.MAX),
+                (Pageable) PageRequest.of(0,1)
+        );
+    }
+
+    public List<TopSellingItemDTO> monthlyTop() {
+        LocalDate today = LocalDate.now();
+        LocalDate firstDay = today.withDayOfMonth(1);
+        LocalDate lastDay = today.withDayOfMonth(today.lengthOfMonth());
+
+        LocalDateTime start = firstDay.atStartOfDay();
+        LocalDateTime end = lastDay.atTime(LocalTime.MAX);
+
+        return orderItemRepository.findTopSellingItems(
+                start,
+                end,
+                PageRequest.of(0, 1) // Top 10
+        );
+    }
+
 }
