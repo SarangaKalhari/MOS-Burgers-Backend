@@ -26,7 +26,9 @@ import org.springframework.stereotype.Service;
 
 import java.awt.*;
 import java.io.ByteArrayOutputStream;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -350,5 +352,15 @@ public class OrderService {
 
     public List<Order> getOrders() {
         return orderRepository.findAll();
+    }
+
+    public Double getDailyRevenue(){
+
+        LocalDate today = LocalDate.now();
+
+        return orderRepository.getRevenueBetween(
+                today.atStartOfDay(),
+                today.atTime(LocalTime.MAX)
+        );
     }
 }

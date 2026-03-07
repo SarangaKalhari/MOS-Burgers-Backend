@@ -33,4 +33,9 @@ public class OrderController {
         return orderService.getOrders();
     }
 
+    @GetMapping("/revenue/daily")
+    public Double dailyRevenue(){
+        return orderService.getDailyRevenue();
+    }
+
 }
