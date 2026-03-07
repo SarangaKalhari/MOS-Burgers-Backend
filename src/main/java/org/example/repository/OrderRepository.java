@@ -10,9 +10,16 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query("""
-SELECT SUM(o.totalAmount)
-FROM Order o
-WHERE o.orderDate BETWEEN :start AND :end
-""")
+    SELECT SUM(o.totalAmount)
+    FROM Order o
+    WHERE o.orderDate BETWEEN :start AND :end
+    """)
     Double getRevenueBetween(LocalDateTime start, LocalDateTime end);
+
+
+    @Query("""
+    SELECT SUM(o.totalAmount)
+    FROM Order o
+    """)
+    Double getTotalRevenue();
 }

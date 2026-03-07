@@ -390,4 +390,8 @@ public class OrderService {
                 end.atTime(LocalTime.MAX)
         );
     }
+
+    public Double getTotalRevenue(){
+        return orderRepository.getTotalRevenue();
+    }
 }

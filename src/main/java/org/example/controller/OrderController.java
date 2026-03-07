@@ -48,4 +48,8 @@ public class OrderController {
         return orderService.getMonthlyRevenue();
     }
 
+    @GetMapping("/revenue/total")
+    public Double totalRevenue(){
+        return orderService.getTotalRevenue();
+    }
 }
