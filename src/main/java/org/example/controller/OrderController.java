@@ -57,4 +57,10 @@ public class OrderController {
     public Long totalOrders() {
         return orderService.getTotalOrders();
     }
+
+    @GetMapping("/orders/daily")
+    public Long dailyOrders() {
+        return orderService.getDailyOrders();
+    }
+
 }

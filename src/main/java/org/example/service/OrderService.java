@@ -399,4 +399,12 @@ public class OrderService {
     public Long getTotalOrders() {
         return orderRepository.countTotalOrders();
     }
+
+    // Daily Orders
+    public Long getDailyOrders() {
+        LocalDate today = LocalDate.now();
+        LocalDateTime start = today.atStartOfDay();
+        LocalDateTime end = today.atTime(LocalTime.MAX);
+        return orderRepository.countOrdersBetween(start, end);
+    }
 }

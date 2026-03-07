@@ -26,4 +26,12 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     // Total Orders (all time)
     @Query("SELECT COUNT(o) FROM Order o")
     Long countTotalOrders();
+
+    // Orders between date range
+    @Query("""
+        SELECT COUNT(o)
+        FROM Order o
+        WHERE o.orderDate BETWEEN :start AND :end
+    """)
+    Long countOrdersBetween(LocalDateTime start, LocalDateTime end);
 }
