@@ -52,4 +52,9 @@ public class OrderController {
     public Double totalRevenue(){
         return orderService.getTotalRevenue();
     }
+
+    @GetMapping("/orders/total")
+    public Long totalOrders() {
+        return orderService.getTotalOrders();
+    }
 }

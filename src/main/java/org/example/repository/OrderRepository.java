@@ -22,4 +22,8 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     FROM Order o
     """)
     Double getTotalRevenue();
+
+    // Total Orders (all time)
+    @Query("SELECT COUNT(o) FROM Order o")
+    Long countTotalOrders();
 }

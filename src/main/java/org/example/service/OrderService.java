@@ -394,4 +394,9 @@ public class OrderService {
     public Double getTotalRevenue(){
         return orderRepository.getTotalRevenue();
     }
+
+    // Total Orders
+    public Long getTotalOrders() {
+        return orderRepository.countTotalOrders();
+    }
 }
