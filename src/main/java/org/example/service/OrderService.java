@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 
 import java.awt.*;
 import java.io.ByteArrayOutputStream;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -361,6 +362,19 @@ public class OrderService {
         return orderRepository.getRevenueBetween(
                 today.atStartOfDay(),
                 today.atTime(LocalTime.MAX)
+        );
+    }
+
+    public Double getWeeklyRevenue(){
+
+        LocalDate today = LocalDate.now();
+
+        LocalDate start = today.with(DayOfWeek.MONDAY);
+        LocalDate end = today.with(DayOfWeek.SUNDAY);
+
+        return orderRepository.getRevenueBetween(
+                start.atStartOfDay(),
+                end.atTime(LocalTime.MAX)
         );
     }
 }

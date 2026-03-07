@@ -38,4 +38,9 @@ public class OrderController {
         return orderService.getDailyRevenue();
     }
 
+    @GetMapping("/revenue/weekly")
+    public Double weeklyRevenue(){
+        return orderService.getWeeklyRevenue();
+    }
+
 }
