@@ -407,4 +407,26 @@ public class OrderService {
         LocalDateTime end = today.atTime(LocalTime.MAX);
         return orderRepository.countOrdersBetween(start, end);
     }
+
+    // Weekly Orders
+    public Long getWeeklyOrders() {
+        LocalDate today = LocalDate.now();
+        LocalDate startOfWeek = today.with(DayOfWeek.MONDAY);
+        LocalDate endOfWeek = today.with(DayOfWeek.SUNDAY);
+        return orderRepository.countOrdersBetween(
+                startOfWeek.atStartOfDay(),
+                endOfWeek.atTime(LocalTime.MAX)
+        );
+    }
+
+    // Monthly Orders
+    public Long getMonthlyOrders() {
+        LocalDate today = LocalDate.now();
+        LocalDate start = today.withDayOfMonth(1);
+        LocalDate end = today.withDayOfMonth(today.lengthOfMonth());
+        return orderRepository.countOrdersBetween(
+                start.atStartOfDay(),
+                end.atTime(LocalTime.MAX)
+        );
+    }
 }

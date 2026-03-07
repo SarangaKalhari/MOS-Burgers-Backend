@@ -63,4 +63,13 @@ public class OrderController {
         return orderService.getDailyOrders();
     }
 
+    @GetMapping("/orders/weekly")
+    public Long weeklyOrders() {
+        return orderService.getWeeklyOrders();
+    }
+
+    @GetMapping("/orders/monthly")
+    public Long monthlyOrders() {
+        return orderService.getMonthlyOrders();
+    }
 }
