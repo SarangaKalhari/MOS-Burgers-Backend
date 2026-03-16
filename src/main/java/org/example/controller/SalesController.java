@@ -33,4 +33,9 @@ public class SalesController {
         return salesservice.getMonthlyOrders();
     }
 
+    @GetMapping("/total")
+    public List<Order> totalOrders() {
+        return salesservice.getTotalOrders();
+    }
+
 }

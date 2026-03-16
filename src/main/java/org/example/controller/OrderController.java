@@ -2,7 +2,6 @@ package org.example.controller;
 
 import org.example.model.dto.OrderRequest;
 import org.example.model.entity.Order;
-import org.example.model.entity.OrderItem;
 import org.example.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

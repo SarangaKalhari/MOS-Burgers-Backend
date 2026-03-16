@@ -62,4 +62,8 @@ public class SalesService {
                 endOfMonth.atTime(LocalTime.MAX)
         );
     }
+
+    public List<Order> getTotalOrders() {
+        return salesRepository.findAll();
+    }
 }
