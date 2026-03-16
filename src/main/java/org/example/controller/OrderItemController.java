@@ -32,10 +32,10 @@ public class OrderItemController {
         return orderIemService.getMonthlyTop10();
     }
 
-//    @GetMapping("/top-1/daily")
-//    public List<TopSellingItemDTO> dailyTop(){
-//        return orderIemService.getTopSellingItemsWithTie();
-//    }
+    @GetMapping("/top-1/daily")
+    public List<TopSellingItemDTO> dailyTop(){
+        return orderIemService.dailyTop();
+    }
 
     @GetMapping("/top-1/weekly")
     public List<TopSellingItemDTO> weeklyTop(){
