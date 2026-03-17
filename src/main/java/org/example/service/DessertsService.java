@@ -18,12 +18,13 @@ public class DessertsService {
     @Autowired
     DessertsRepository dessertsRepository;
 
-    public List<DessertDTO> getDesserts(){
-        List<Desserts> desserts = dessertsRepository.findAll();
+    public List<Desserts> getDesserts() {
 
-        return desserts.stream()
-                .map(category -> modelMapper.map(desserts, DessertDTO.class))
-                .toList();
+        List<Desserts> desserts = dessertsRepository.findAll();
+        return desserts;
+//        return desserts.stream()
+//                .map(dessert -> modelMapper.map(dessert, DessertDTO.class))
+//                .toList();
     }
 
     public void addDessert(DessertDTO dessertDTO) {
