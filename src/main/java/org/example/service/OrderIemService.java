@@ -101,4 +101,8 @@ public class OrderIemService {
         );
     }
 
+    public List<TopSellingItemDTO> totalyTop() {
+
+        return orderItemRepository.findBestItem(PageRequest.of(0,1));
+    }
 }

@@ -4,6 +4,7 @@ import org.example.model.dto.TopSellingItemDTO;
 import org.example.model.entity.OrderItem;
 import org.example.service.OrderIemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("order-item")
+@CrossOrigin("http://localhost:4200/")
 public class OrderItemController {
 
     @Autowired
@@ -47,6 +49,10 @@ public class OrderItemController {
         return orderIemService.monthlyTop();
     }
 
+    @GetMapping("/top-1/total")
+    public List<TopSellingItemDTO> totalTop(){
+        return orderIemService.totalyTop();
+    }
 //    @GetMapping("/top-1/m")
 //    public List<TopSellingItemDTO> top(){
 //        return orderIemService.getTopSellingItemsWithTie();
