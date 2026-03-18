@@ -42,20 +42,5 @@ public interface OrderItemRepository extends JpaRepository <OrderItem, Long> {
     ORDER BY SUM(oi.quantity) DESC
     """)
     List<TopSellingItemDTO> findBestItem(Pageable pageable);
-//    List<TopSellingItemDTO> findBestItem();
 
-//    @Query("""
-//SELECT new org.example.model.dto.TopSellingItemDTO(
-//    oi.itemCode,
-//    SUM(oi.quantity)
-//)
-//FROM OrderItem oi
-//WHERE oi.order.orderDate BETWEEN :start AND :end
-//GROUP BY oi.itemCode
-//ORDER BY SUM(oi.quantity) DESC
-//""")
-//    List<TopSellingItemDTO> findAllWithTotalQuantity(
-//            LocalDateTime start,
-//            LocalDateTime end
-//    );
 }

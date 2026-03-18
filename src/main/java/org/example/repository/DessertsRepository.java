@@ -1,6 +1,5 @@
 package org.example.repository;
 
-import org.example.model.entity.Appetizers;
 import org.example.model.entity.Desserts;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,7 +12,7 @@ public interface DessertsRepository extends JpaRepository<Desserts, Long> {
 
     void deleteByCode(String code);
 
-    List<Appetizers> findByCategory(String categories);
+    List<Desserts> findByCategory(String categories);
 
     @Query("SELECT DISTINCT d.category FROM Desserts d")
     List<String> getCategories();

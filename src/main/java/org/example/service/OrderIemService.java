@@ -105,4 +105,10 @@ public class OrderIemService {
 
         return orderItemRepository.findBestItem(PageRequest.of(0,1));
     }
+
+    public List<TopSellingItemDTO> getTotalTop10() {
+        return orderItemRepository.findBestItem(
+                PageRequest.of(0, 10) // Top 10
+        );
+    }
 }

@@ -28,7 +28,7 @@ public class DessertController {
     }
 
     @GetMapping("/{categories}")
-    public List<Appetizers> categorizedItems(@PathVariable String categories){
+    public List<Desserts> categorizedItems(@PathVariable String categories){
         return dessertsService.getCategories(categories);
     }
 

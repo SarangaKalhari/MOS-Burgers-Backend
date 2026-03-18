@@ -34,6 +34,11 @@ public class OrderItemController {
         return orderIemService.getMonthlyTop10();
     }
 
+    @GetMapping("/top/total")
+    public List<TopSellingItemDTO> totalTopSelling(){
+        return orderIemService.getTotalTop10();
+    }
+
     @GetMapping("/top-1/daily")
     public List<TopSellingItemDTO> dailyTop(){
         return orderIemService.dailyTop();

@@ -40,7 +40,7 @@ public class DessertsService {
         return dessertsRepository.getCategories();
     }
 
-    public List<Appetizers> getCategories(String categories) {
+    public List<Desserts> getCategories(String categories) {
         return dessertsRepository.findByCategory(categories);
     }
 }
