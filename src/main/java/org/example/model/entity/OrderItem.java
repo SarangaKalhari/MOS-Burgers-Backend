@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,13 +22,15 @@ public class OrderItem {
 
     private String itemCode;
 
-    private String category; // BURGER, BEVERAGE, DESSERT
+    private String category;
 
-    private Double unitPrice;
+    @Column(precision = 10, scale = 2)
+    private BigDecimal unitPrice;
 
     private Integer quantity;
 
-    private Double totalPrice;
+    @Column(precision = 10, scale = 2)
+    private BigDecimal totalPrice;
 
     @ManyToOne
     @JoinColumn(name = "order_id")

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 
@@ -18,8 +20,10 @@ public class Beverages {
     private String code;
     private String title;
     private String image;
-    private double price;
+
+    @Column(precision = 10, scale = 2)
+    private BigDecimal price;
+
     private String category;
     private int stock;
-
 }
