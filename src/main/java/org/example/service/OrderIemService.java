@@ -28,7 +28,7 @@ public class OrderIemService {
         LocalDateTime start = today.atStartOfDay();
         LocalDateTime end = today.atTime(LocalTime.MAX);
 
-        return orderItemRepository.findTopSellingItems(start, end, (Pageable) PageRequest.of(0,10));
+        return orderItemRepository.findTopSellingItems(start, end, (Pageable) PageRequest.of(0,5));
 
     }
 
@@ -42,7 +42,7 @@ public class OrderIemService {
         return orderItemRepository.findTopSellingItems(
                 startOfWeek.atStartOfDay(),
                 endOfWeek.atTime(LocalTime.MAX),
-                (Pageable) PageRequest.of(0,10)
+                (Pageable) PageRequest.of(0,5)
         );
     }
 
@@ -57,7 +57,7 @@ public class OrderIemService {
         return orderItemRepository.findTopSellingItems(
                 start,
                 end,
-                PageRequest.of(0, 10) // Top 10
+                PageRequest.of(0, 5) // Top 10
         );
     }
 
@@ -103,12 +103,11 @@ public class OrderIemService {
 
     public List<TopSellingItemDTO> totalyTop() {
 
-        return orderItemRepository.findBestItem(PageRequest.of(0,1));
+        return orderItemRepository.findBestItem(PageRequest.of(0, 1));
     }
 
     public List<TopSellingItemDTO> getTotalTop10() {
-        return orderItemRepository.findBestItem(
-                PageRequest.of(0, 10) // Top 10
-        );
+        return orderItemRepository.findBestItem(PageRequest.of(0, 5));
+//      
     }
 }
