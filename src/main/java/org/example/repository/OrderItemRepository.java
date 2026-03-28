@@ -42,5 +42,4 @@ public interface OrderItemRepository extends JpaRepository <OrderItem, Long> {
     ORDER BY SUM(oi.quantity) DESC
     """)
     List<TopSellingItemDTO> findBestItem(Pageable pageable);
-
 }

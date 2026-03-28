@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 
 import java.awt.*;
 import java.io.ByteArrayOutputStream;
+import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -195,8 +196,8 @@ public class OrderService {
             OrderItem item = new OrderItem();
             item.setItemCode(dto.getItemCode());
             item.setQuantity(dto.getQuantity());
-            item.setUnitPrice(dto.getUnitPrice());
-            item.setTotalPrice(itemTotal);
+            item.setUnitPrice(BigDecimal.valueOf(dto.getUnitPrice()));
+            item.setTotalPrice(BigDecimal.valueOf(itemTotal));
 
             order.addOrderItem(item);
 
@@ -233,10 +234,10 @@ public class OrderService {
     double discount = request.getDiscount() != null ? request.getDiscount() : 0;
     double total = subTotal + tax - discount;
 
-    order.setSubTotal(subTotal);
-    order.setTaxAmount(tax);
-    order.setDiscountAmount(discount);
-    order.setTotalAmount(total);
+    order.setSubTotal(BigDecimal.valueOf(subTotal));
+    order.setTaxAmount(BigDecimal.valueOf(tax));
+    order.setDiscountAmount(BigDecimal.valueOf(discount));
+    order.setTotalAmount(BigDecimal.valueOf(total));
 
     // 🔥 SAVE ONLY ORDER (Cascade handles items)
     orderRepository.save(order);

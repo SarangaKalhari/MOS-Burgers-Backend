@@ -1,7 +1,6 @@
 package org.example.controller;
 
 import org.example.model.dto.DessertDTO;
-import org.example.model.entity.Appetizers;
 import org.example.model.entity.Desserts;
 import org.example.service.DessertsService;
 import org.springframework.beans.factory.annotation.Autowired;
