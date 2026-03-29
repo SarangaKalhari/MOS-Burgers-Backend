@@ -1,6 +1,7 @@
 package org.example.model.dto;
 
 import lombok.*;
+import org.example.enums.ItemCategory;
 
 @Getter
 @Setter
@@ -10,7 +11,7 @@ import lombok.*;
 public class OrderItemRequest {
 
     private String itemCode;
-    private String category;
+    private ItemCategory category;
     private double unitPrice;
     private Integer quantity;
     private double totalPrice;

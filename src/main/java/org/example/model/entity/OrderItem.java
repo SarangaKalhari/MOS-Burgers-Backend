@@ -3,6 +3,7 @@ package org.example.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.example.enums.ItemCategory;
 
 import java.math.BigDecimal;
 
@@ -22,7 +23,8 @@ public class OrderItem {
 
     private String itemCode;
 
-    private String category;
+    @Enumerated(EnumType.STRING)
+    private ItemCategory category;
 
     @Column(precision = 10, scale = 2)
     private BigDecimal unitPrice;

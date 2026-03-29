@@ -12,14 +12,8 @@ import org.example.enums.PaymentMethod;
 import org.example.model.dto.OrderDTO;
 import org.example.model.dto.OrderItemRequest;
 import org.example.model.dto.OrderRequest;
-import org.example.model.entity.Beverages;
-import org.example.model.entity.Burger;
-import org.example.model.entity.Order;
-import org.example.model.entity.OrderItem;
-import org.example.repository.BeveragesRepository;
-import org.example.repository.BurgerRepository;
-import org.example.repository.OrderItemRepository;
-import org.example.repository.OrderRepository;
+import org.example.model.entity.*;
+import org.example.repository.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,6 +43,9 @@ public class OrderService {
 
     @Autowired
     private BeveragesRepository beveragesRepository;
+
+    @Autowired
+    private DessertsRepository dessertsRepository;
 
      Order order = new Order();
 //     List<OrderItem> orderItems = new ArrayList<>();
@@ -198,34 +195,51 @@ public class OrderService {
             item.setQuantity(dto.getQuantity());
             item.setUnitPrice(BigDecimal.valueOf(dto.getUnitPrice()));
             item.setTotalPrice(BigDecimal.valueOf(itemTotal));
+            item.setCategory(dto.getCategory());
+            System.out.println(item);
 
             order.addOrderItem(item);
 
             // 🔥 Stock Handling
-            switch (dto.getCategory()) {
+            switch (dto.getCategory().toLowerCase()) {
+
                 case "burger" -> {
                     Burger burger = burgerRepository.findByCode(dto.getItemCode())
                             .orElseThrow(() -> new RuntimeException("Burger not found"));
 
                     if (burger.getStock() < dto.getQuantity()) {
-                        throw new RuntimeException("Not enough stock");
+                        throw new RuntimeException("Not enough stock for burger: " + dto.getItemCode());
                     }
 
                     burger.setStock(burger.getStock() - dto.getQuantity());
                     burgerRepository.save(burger);
                 }
 
-                case "beverage" -> {
+                case "beverages" -> {
                     Beverages beverage = beveragesRepository.findByCode(dto.getItemCode())
                             .orElseThrow(() -> new RuntimeException("Beverage not found"));
 
                     if (beverage.getStock() < dto.getQuantity()) {
-                        throw new RuntimeException("Not enough stock");
+                        throw new RuntimeException("Not enough stock for beverage: " + dto.getItemCode());
                     }
 
                     beverage.setStock(beverage.getStock() - dto.getQuantity());
                     beveragesRepository.save(beverage);
                 }
+
+                case "desserts" -> {
+                    Desserts desserts = dessertsRepository.findByCode(dto.getItemCode());
+
+
+                    if (desserts.getStock() < dto.getQuantity()) {
+                        throw new RuntimeException("Not enough stock for deesserts: " + dto.getItemCode());
+                    }
+
+                    desserts.setStock(desserts.getStock() - dto.getQuantity());
+                    dessertsRepository.save(desserts);
+                }
+
+                default -> throw new RuntimeException("Invalid category: " + dto.getCategory());
             }
         }
 
@@ -308,7 +322,7 @@ public class OrderService {
 
             for (OrderItem item : items) {
                 table.addCell(item.getItemCode());
-                table.addCell(item.getCategory());
+                table.addCell(String.valueOf(item.getCategory()));
                 table.addCell(String.valueOf(item.getQuantity()));
                 table.addCell(String.valueOf(item.getUnitPrice()));
                 table.addCell(String.valueOf(item.getTotalPrice()));

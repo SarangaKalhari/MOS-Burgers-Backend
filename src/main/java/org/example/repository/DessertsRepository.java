@@ -16,4 +16,6 @@ public interface DessertsRepository extends JpaRepository<Desserts, Long> {
 
     @Query("SELECT DISTINCT d.category FROM Desserts d")
     List<String> getCategories();
+
+    Desserts findByCode(String code);
 }
