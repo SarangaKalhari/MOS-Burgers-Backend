@@ -28,12 +28,13 @@ public class AppetizersService {
     }
 
 //    get all appetizers
-    public List<AppetizersDTO> getAll() {
+    public List<Appetizers> getAll() {
         List<Appetizers> appetizersList = appetizersRepository.findAll();
 
-        return appetizersList.stream()
-                .map(category -> modelMapper.map(appetizersList, AppetizersDTO.class))
-                .toList();
+//        return appetizersList.stream()
+//                .map(category -> modelMapper.map(appetizersList, AppetizersDTO.class))
+//                .toList();
+        return appetizersList;
     }
 
 //    add  item to db

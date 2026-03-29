@@ -11,13 +11,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("appetizers")
+@CrossOrigin("http://localhost:4200/")
 public class AppetizersController {
 
     @Autowired
     AppetizersService appetizersService;
 
     @GetMapping
-    public List<AppetizersDTO> getAppetizers(){
+    public List<Appetizers> getAppetizers(){
         return appetizersService.getAll();
     }
 
